@@ -44,6 +44,9 @@ jobs:
           ./scripts/feeds update -a
           ./scripts/feeds install -a
 
+      - name: Copy configuration file
+        run: cp ./target_config/xiaomi_ax3000t.config .config
+
       - name: Generate configuration file
         run: make defconfig
 
