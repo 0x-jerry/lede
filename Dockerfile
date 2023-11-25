@@ -12,12 +12,12 @@ RUN apt install -y ack antlr3 asciidoc autoconf automake autopoint binutils biso
 
 RUN adduser openwrt
 
-COPY --chown=openwrt . /home/openwrt/lede
+RUN mkdir /openwrt && chown openwrt:openwrt -R ./openwrt
+COPY --chown=openwrt . /openwrt
 
+WORKDIR /openwrt
 USER openwrt
-WORKDIR /home/openwrt/lede
-
 RUN ./scripts/feeds update -a
 RUN ./scripts/feeds install -a
 
-CMD [ "tail", "-f", "/dev/null" ]
+ENTRYPOINT [ "bash" ]
