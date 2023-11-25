@@ -1,0 +1,8 @@
+version: "3"
+
+services:
+  menu:
+    image: lede
+    volumes:
+      - ./target_config/xiaomi_ax3000t.config:/openwrt/.config
+    entrypoint: ["tail", "-f", "/dev/null"]
